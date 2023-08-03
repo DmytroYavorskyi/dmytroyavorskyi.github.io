@@ -1,0 +1,11 @@
+{
+    "applinks": {
+        "details": [{
+            "appIDs": ["4T788VK6NF.au.com.crownmelbourne.mobileconnect"],
+            "components": [{
+                "/": "*",
+                "comment": "Matches any URL whose path starts with /stock/"
+            }]
+        }]
+    }
+}

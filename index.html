@@ -23,12 +23,12 @@
 
         document.getElementById('startButton').addEventListener('click', function () {
             navigator.mediaDevices.getUserMedia({
-                video: {
+      video: {
          facingMode: 'environment', // or 'user' for front camera
          width: { ideal: 640 }, // Set your preferred video width
            height: { ideal: 480 } // Set your preferred video height
-       } 
-            })
+       }
+   })
                 .then(function (stream) {
                     video.srcObject = stream;
                     takePictureButton.disabled = false; // Enable the button once the camera is started
@@ -53,6 +53,5 @@
             // You can now use the 'capturedImage' element to display or save the captured image
         });
     </script>
-
 </body>
 </html>

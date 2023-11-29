@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Web Page</title>
+    <title>Camera POC</title>
 </head>
 <body>
 
@@ -21,7 +21,7 @@
         let takePictureButton = document.querySelector('#takePictureButton');
 
         document.getElementById('startButton').addEventListener('click', function () {
-            navigator.mediaDevices.getUserMedia({ video: true })
+            navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } })
                 .then(function (stream) {
                     video.srcObject = stream;
                     takePictureButton.disabled = false; // Enable the button once the camera is started

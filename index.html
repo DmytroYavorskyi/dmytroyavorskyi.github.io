@@ -5,7 +5,7 @@
                   <script>
                      navigator.mediaDevices.getUserMedia({ video: true })
                         .then(function (stream) {
-                           var video = document.querySelector('video').play();
+                           var video = document.querySelector('video');
                            video.srcObject = stream;
                         })
                         .catch(function (error) {

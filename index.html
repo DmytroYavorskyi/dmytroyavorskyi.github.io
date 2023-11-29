@@ -3,14 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Camera POC</title>
+    <title>Your Web Page</title>
+    <style>
+        #video {
+            width: 100%; /* Set the width to 100% of the parent container (device screen) */
+            height: auto; /* Maintain the aspect ratio */
+            object-fit: cover; /* Cover the entire container while maintaining aspect ratio */
+        }
+    </style>
 </head>
 <body>
 
     <button id="startButton">Start Camera</button>
     <button id="takePictureButton" disabled>Take Picture</button>
 
-    <video id="video" width="640" height="480" autoplay playsinline></video>
+    <video id="video" autoplay playsinline></video>
     <canvas id="canvas" style="display:none;"></canvas>
     <img id="capturedImage" style="display:none;">
 

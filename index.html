@@ -1,32 +1,50 @@
 <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Camera POC</title>
+    <title>Your Web Page</title>
 </head>
 <body>
 
     <button id="startButton">Start Camera</button>
+    <button id="takePictureButton" disabled>Take Picture</button>
 
     <video id="video" width="640" height="480" autoplay></video>
+    <canvas id="canvas" style="display:none;"></canvas>
+    <img id="capturedImage" style="display:none;">
 
     <script>
+        let video = document.querySelector('#video');
+        let canvas = document.querySelector('#canvas');
+        let capturedImage = document.querySelector('#capturedImage');
+        let takePictureButton = document.querySelector('#takePictureButton');
+
         document.getElementById('startButton').addEventListener('click', function () {
-            navigator.mediaDevices.getUserMedia({
-      video: {
-         facingMode: 'environment', // or 'user' for front camera
-         width: { ideal: 640 }, // Set your preferred video width
-           height: { ideal: 480 } // Set your preferred video height
-       }
-   })
+            navigator.mediaDevices.getUserMedia({ video: true })
                 .then(function (stream) {
-                    var video = document.querySelector('video');
                     video.srcObject = stream;
+                    takePictureButton.disabled = false; // Enable the button once the camera is started
                 })
                 .catch(function (error) {
                     console.log('Error accessing camera:', error);
                 });
+        });
+
+        takePictureButton.addEventListener('click', function () {
+            // Draw the current video frame onto the canvas
+            canvas.width = video.videoWidth;
+            canvas.height = video.videoHeight;
+            canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height);
+
+            // Convert the canvas content to a data URL and set it as the source for the image element
+            capturedImage.src = canvas.toDataURL('image/png');
+
+            // Display the captured image
+            capturedImage.style.display = 'block';
+
+            // You can now use the 'capturedImage' element to display or save the captured image
         });
     </script>
 

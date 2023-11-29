@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -11,7 +10,7 @@
     <button id="startButton">Start Camera</button>
     <button id="takePictureButton" disabled>Take Picture</button>
 
-    <video id="video" width="640" height="480" autoplay></video>
+    <video id="video" width="640" height="480" autoplay playsinline></video>
     <canvas id="canvas" style="display:none;"></canvas>
     <img id="capturedImage" style="display:none;">
 
@@ -22,13 +21,7 @@
         let takePictureButton = document.querySelector('#takePictureButton');
 
         document.getElementById('startButton').addEventListener('click', function () {
-            navigator.mediaDevices.getUserMedia({
-      video: {
-         facingMode: 'environment', // or 'user' for front camera
-         width: { ideal: 640 }, // Set your preferred video width
-           height: { ideal: 480 } // Set your preferred video height
-       }
-   })
+            navigator.mediaDevices.getUserMedia({ video: true })
                 .then(function (stream) {
                     video.srcObject = stream;
                     takePictureButton.disabled = false; // Enable the button once the camera is started
@@ -53,5 +46,6 @@
             // You can now use the 'capturedImage' element to display or save the captured image
         });
     </script>
+
 </body>
 </html>

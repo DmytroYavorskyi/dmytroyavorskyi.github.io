@@ -10,9 +10,10 @@
             height: auto; /* Maintain the aspect ratio */
             object-fit: cover; /* Cover the entire container while maintaining aspect ratio */
         }
-        #startButton, #takePictureButton {
-            width: 100;
-            height: 50;
+         button {
+            font-size: 18px;
+            padding: 10px 20px;
+            margin: 5px;
         }
     </style>
 </head>
@@ -20,7 +21,7 @@
 
     <button id="startButton">Start Camera</button>
     <button id="takePictureButton" disabled>Take Picture</button>
-
+    <span>  </span>
     <video id="video" autoplay playsinline></video>
     <canvas id="canvas" style="display:none;"></canvas>
     <img id="capturedImage" style="display:none;">

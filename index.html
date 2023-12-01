@@ -32,6 +32,8 @@
         let capturedImage = document.querySelector('#capturedImage');
         let takePictureButton = document.querySelector('#takePictureButton');
 
+        let capturedImageData;
+
         document.getElementById('startButton').addEventListener('click', function () {
             navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } })
                 .then(function (stream) {
@@ -50,13 +52,42 @@
             canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height);
 
             // Convert the canvas content to a data URL and set it as the source for the image element
-            capturedImage.src = canvas.toDataURL('image/png');
+            capturedImageData = canvas.toDataURL('image/png');
+            
+            capturedImage.src = capturedImageData;
 
             // Display the captured image
             capturedImage.style.display = 'block';
 
             // You can now use the 'capturedImage' element to display or save the captured image
+            uploadImage()
         });
+        
+        function uploadImage() {
+            // Check if an image is captured
+            if (!capturedImageData) {
+                alert("Please capture an image first.");
+                return;
+            }
+
+            // Use JavaScript to send the captured image data to a server
+            fetch('https://weu-api-digital-tst.azure-api.net/api/member-details/v1/cacheless', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ img: capturedImageData }),
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Server response:', data);
+                alert('Image uploaded successfully.');
+            })
+            .catch(error => {
+                console.error('Error uploading image:', error);
+                alert('Error uploading image.');
+            });
+        }
     </script>
 
 </body>

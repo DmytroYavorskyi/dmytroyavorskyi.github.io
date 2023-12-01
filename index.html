@@ -72,6 +72,7 @@
 
             // Use JavaScript to send the captured image data to a server
             fetch('https://weu-api-digital-tst.azure-api.net/api/member-details/v1/cacheless', {
+                mode: 'no-cors',
                 method: 'POST',
                 headers: {
                     'Access-Control-Allow-Origin': '*',
@@ -81,7 +82,7 @@
                     'Ocp-Apim-Subscription-Key' : '464dcdeb2107469bb539c1b83a565dce',
                 },
                 body: JSON.stringify({ "img": capturedImageData }),
-            })
+            }) 
             .then(response => response.json())
             .then(data => {
                 console.log('Server response:', data);

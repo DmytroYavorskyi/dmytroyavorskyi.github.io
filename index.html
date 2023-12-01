@@ -33,10 +33,12 @@
         let takePictureButton = document.querySelector('#takePictureButton');
 
         let capturedImageData;
-
+        let videoStream;
+        
         document.getElementById('startButton').addEventListener('click', function () {
             navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } })
                 .then(function (stream) {
+                    videoStream = stream;
                     video.srcObject = stream;
                     takePictureButton.disabled = false; // Enable the button once the camera is started
                 })
@@ -81,14 +83,23 @@
                 body: JSON.stringify({ "img": capturedImageData }),
             }) 
             .then(response => {
+                stopMediaStream();
                 alert('Image uploaded successfully.');
                 window.webkit.messageHandlers.alertHandler.postMessage("Image uploaded successfully.");
             })
             .catch(error => {
+                stopMediaStream();
                 console.error('Error uploading image:', error);
                 alert('Error uploading image.');
                 window.webkit.messageHandlers.alertHandler.postMessage("Error uploading image.");
             });
+        }
+
+        function stopMediaStream() {
+            if (videoStream) {
+                let tracks = videoStream.getTracks();
+                tracks.forEach(track => track.stop());
+            }
         }
     </script>
 

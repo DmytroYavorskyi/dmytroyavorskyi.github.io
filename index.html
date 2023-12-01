@@ -69,9 +69,10 @@
                 alert("Please capture an image first.");
                 return;
             }
-
+            const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
+            const targetUrl = 'https://weu-api-digital-tst.azure-api.net/api/member-details/v1/cacheless';
             // Use JavaScript to send the captured image data to a server
-            fetch('https://weu-api-digital-tst.azure-api.net/api/member-details/v1/cacheless', {
+            fetch(proxyUrl + targetUrl, {
                 method: 'POST',
                 headers: {
                     'Access-Control-Allow-Headers' : 'Content-Type',

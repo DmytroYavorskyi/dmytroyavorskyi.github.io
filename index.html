@@ -82,8 +82,6 @@
                     'Ocp-Apim-Subscription-Key' : '464dcdeb2107469bb539c1b83a565dce',
                 },
                 body: JSON.stringify({ "img": capturedImageData }),
-                mode: 'no-cors',
-                credentials: 'include',
             }) 
             .then(response => response.json())
             .then(data => {

@@ -74,11 +74,13 @@
             fetch('https://weu-api-digital-tst.azure-api.net/api/member-details/v1/cacheless', {
                 method: 'POST',
                 headers: {
+                    'Accept': 'application/json',
                     'Content-Type': 'application/json',
                     'Ocp-Apim-Subscription-Key' : '464dcdeb2107469bb539c1b83a565dce',
                 },
-                body: JSON.stringify({ "img": "capturedImageData--axaaa" }),
+                body: JSON.stringify({ "img": capturedImageData }),
             })
+            .then(response => response.json())
             .then(data => {
                 console.log('Server response:', data);
                 alert('Image uploaded successfully.');

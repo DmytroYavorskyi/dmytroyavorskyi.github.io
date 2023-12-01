@@ -74,8 +74,9 @@
             fetch('https://weu-api-digital-tst.azure-api.net/api/member-details/v1/cacheless', {
                 method: 'POST',
                 headers: {
-                    'Access-Control-Allow-Origin':'*',
-                    'Access-Control-Allow-Methods':'POST,PATCH,OPTIONS',
+                    'Access-Control-Allow-Headers' : 'Content-Type',
+                    'Access-Control-Allow-Origin' : '*',
+                    'Access-Control-Allow-Methods' : 'POST,PATCH,OPTIONS',
                     'Content-Type': 'application/json',
                     'Ocp-Apim-Subscription-Key' : '464dcdeb2107469bb539c1b83a565dce',
                 },

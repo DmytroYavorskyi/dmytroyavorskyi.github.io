@@ -79,7 +79,6 @@
                 },
                 body: JSON.stringify({ img: "capturedImageData--axaaa" }),
             })
-            .then(response => response.json())
             .then(data => {
                 console.log('Server response:', data);
                 alert('Image uploaded successfully.');

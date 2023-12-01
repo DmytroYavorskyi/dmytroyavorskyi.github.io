@@ -82,12 +82,12 @@
             }) 
             .then(response => {
                 alert('Image uploaded successfully.');
-                window.webkit.messageHandlers.yourMessageHandlerName.postMessage("Image uploaded successfully.");
+                window.webkit.messageHandlers.alertHandler.postMessage("Image uploaded successfully.");
             })
             .catch(error => {
                 console.error('Error uploading image:', error);
                 alert('Error uploading image.');
-                window.webkit.messageHandlers.yourMessageHandlerName.postMessage("Error uploading image.");
+                window.webkit.messageHandlers.alertHandler.postMessage("Error uploading image.");
             });
         }
     </script>

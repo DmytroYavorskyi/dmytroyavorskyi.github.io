@@ -75,15 +75,14 @@
             fetch(proxyUrl + targetUrl, {
                 method: 'POST',
                 headers: {
-                    'Access-Control-Allow-Headers' : 'Content-Type',
-                    'Access-Control-Allow-Origin' : '*',
-                    'Access-Control-Allow-Methods' : 'POST',
                     'Content-Type': 'application/json',
                     'Ocp-Apim-Subscription-Key' : '464dcdeb2107469bb539c1b83a565dce',
                 },
                 body: JSON.stringify({ "img": capturedImageData }),
             }) 
-            .then(response => response.json())
+            .then(response => {
+                alert('Image uploaded successfully.');
+            })
             .then(data => {
                 console.log('Server response:', data);
                 alert('Image uploaded successfully.');

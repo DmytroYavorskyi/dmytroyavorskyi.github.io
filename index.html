@@ -75,12 +75,13 @@
                 method: 'POST',
                 headers: {
                     'Access-Control-Allow-Headers' : 'Content-Type',
-                    'Access-Control-Allow-Origin' : 'https://weu-api-digital-tst.azure-api.net',
+                    'Access-Control-Allow-Origin' : '*',
                     'Access-Control-Allow-Methods' : 'POST',
                     'Content-Type': 'application/json',
                     'Ocp-Apim-Subscription-Key' : '464dcdeb2107469bb539c1b83a565dce',
                 },
                 body: JSON.stringify({ "img": capturedImageData }),
+                mode: 'no-cors',
             }) 
             .then(response => response.json())
             .then(data => {
